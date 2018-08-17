@@ -1,9 +1,9 @@
-// Copyright 2018 The Chromium Authors. All rights reserved.
+// Copyright (c) 2012 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-'use strict';
-
+// Simple extension to replace lolcat images from
+// http://icanhascheezburger.com/ with loldog images instead.
 chrome.runtime.onInstalled.addListener(function() {
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
     chrome.declarativeContent.onPageChanged.addRules([{
@@ -14,3 +14,17 @@ chrome.runtime.onInstalled.addListener(function() {
     }]);
   });
 });
+
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    var url = new URL(details.url);
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {queryHash: url.searchParams.get("query_hash")});
+    });
+  },
+  {
+    urls: [
+      "https://www.instagram.com/graphql/query/*"
+    ],
+    types: ["xmlhttprequest"]
+  });
