@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style>
-      button {
-        height: 30px;
-        width: auto;
-        outline: none;
+      body {
+        width: 300px;
+        padding: 20px;
       }
     </style>
   </head>
   <body>
-    <button id="changeColor">Let the magic happen!</button>
+      <form class="form-horizontal">
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> Must like the post
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default" id="changeColor">Start</button>
+            </div>
+          </div>
+        </form>
     <script src="popup.js"></script>
   </body>
 </html>
